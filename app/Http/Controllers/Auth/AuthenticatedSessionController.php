@@ -26,11 +26,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+//        dd($request);
 
         $request->authenticate();
         $user=Auth::user();
-//        dd($user);
-        $this->authenticated($request,$user);
+        $user->authenticated($request,$user);
 
         $request->session()->regenerate();
 
@@ -50,11 +50,6 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
-    protected function authenticated(Request $request, $user)
-    {
-        $user->generateTwoFactorCode();
-        $user->notify(new TwoFactorCode());
 
-    }
 
 }

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
         'two_factor_expires_at',
         'two_factor_code'
     ];
@@ -63,6 +64,12 @@ class User extends Authenticatable
         $this->two_factor_code = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+    public function authenticated(Request $request, $user)
+    {
+        $user->generateTwoFactorCode();
+//        $user->notify(new TwoFactorCode());
+
     }
 
     public function posts()

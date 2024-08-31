@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\SanctumController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\TwoFactorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
-
 Route::post('register',[SanctumController::class,'register']);
 Route::post('login',[SanctumController::class,'login']);
+Route::post('verify',[SanctumController::class,'verify'])->middleware('auth:sanctum');
 Route::post('logout',[SanctumController::class,'logout'])->middleware('auth:sanctum');

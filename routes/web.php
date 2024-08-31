@@ -28,7 +28,6 @@ Route::get('/dashboard', function () {
 
 
 
-
 Route::get('verify/resend', [TwoFactorController::class,'resend'])->name('verify.resend');
 Route::resource('verify', TwoFactorController::class)->only(['index', 'store']);
 Route::middleware('auth')->group(function () {
@@ -36,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 
 
